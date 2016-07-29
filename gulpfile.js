@@ -5,8 +5,9 @@ var gulp = require('gulp'),
   watch = require('gulp-watch'),
   bowerFiles = require('main-bower-files'),
   concat = require('gulp-concat'),
-  // connect = require('gulp-connect-multi')(),
   browserSync = require('browser-sync').create(),
+  url = require('url'),
+  proxy = require('proxy-middleware'),
   historyApiFallback = require('connect-history-api-fallback'),
   coffee = require('gulp-coffee'),
   replace = require('gulp-replace'),
@@ -55,12 +56,16 @@ gulp.task('build', [ 'clean-dist', 'index', 'sass', 'vendor-javascript', 'javasc
 // }));
 //
 gulp.task('connect', function() {
+    var proxyOptions = url.parse('http://localhost:3000/app');
+    proxyOptions.route = '/app/api';
     browserSync.init({
+        ui: false,
+        port: 8080,
         server: {
             baseDir: "./www",
-            middleware: [ historyApiFallback() ]
+            middleware: [ proxy(proxyOptions), historyApiFallback({ verbose: true }) ]
         },
-        startPath: 'app'
+        startPath: 'app/workflow'
     });
 });
 
@@ -72,6 +77,7 @@ gulp.task('index', function() {
   return gulp.src('app/index.html')
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest('www'))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('sass', function() {

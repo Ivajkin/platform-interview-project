@@ -14,7 +14,6 @@
     "gulp-coffee": "^2.3.2",
     "gulp-coffeelint": "^0.6.0",
     "gulp-concat": "^2.2.0",
-    "gulp-connect-multi": "^1.0.8",
     "gulp-coveralls": "^0.1.4",
     "gulp-debug": "^2.1.2",
     "gulp-htmlmin": "^1.2.0",
@@ -38,8 +37,10 @@
     "karma-phantomjs-launcher": "^0.2.1",
     "main-bower-files": "^2.9.0",
     "phantomjs": "^1.9.18",
+    "proxy-middleware": "^0.15.0",
     "shelljs": "^0.3.0",
-    "streamqueue": "^1.1.1"
+    "streamqueue": "^1.1.1",
+    "url": "^0.11.0"
   },
   "scripts": {
     "test": "./node_modules/.bin/karma start test/karma.conf.js --single-run --browsers PhantomJS && cat ./test/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"

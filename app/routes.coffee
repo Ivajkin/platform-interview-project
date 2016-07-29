@@ -6,7 +6,7 @@ angular.module('App').config [ '$stateProvider', 'templatePaths', ($stateProvide
   $stateProvider.state 'app',
     controller: 'AppController'
     templateUrl: templatePaths.shared.container
-    url: '/'
+    url: '/workflow'
 
   # # Admin
   # $stateProvider.state 'admin',
