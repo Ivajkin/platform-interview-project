@@ -36,6 +36,14 @@ var paths = {
   dist: ['www/app/dist/**/*']
 };
 
+var URLS = {
+    api: {
+        host: 'http://localhost:3000',
+        path: '/app',
+        proxyPath: '/app/api'
+    }
+}
+
 function fileTypeFilter (files, extension) {
   var regExp = new RegExp('\\.' + extension + '$');
   return files.filter(regExp.test.bind(regExp));
@@ -56,8 +64,8 @@ gulp.task('build', [ 'clean-dist', 'index', 'sass', 'vendor-javascript', 'javasc
 // }));
 //
 gulp.task('connect', function() {
-    var proxyOptions = url.parse('http://localhost:3000/app');
-    proxyOptions.route = '/app/api';
+    var proxyOptions = url.parse(URLS.api.host + URLS.api.path);
+    proxyOptions.route = URLS.api.proxyPath;
     browserSync.init({
         ui: false,
         port: 8080,
