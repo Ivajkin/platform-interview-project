@@ -1,6 +1,7 @@
 # Logs
 logs
 *.log
+www/*
 npm-debug.log*
 
 # Runtime data
@@ -27,6 +28,7 @@ coverage
 build/Release
 
 # Dependency directories
+bower_components
 node_modules
 jspm_packages
 
