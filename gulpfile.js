@@ -150,10 +150,10 @@ gulp.task('fonts', function () {
 
 gulp.task('images', function () {
   return gulp.src([
-    './app/images/*',
+    './app/images/**/*',
   ])
   .pipe(debug({title: 'images'}))
-  .pipe(gulp.dest('./www/assets/img'));
+  .pipe(gulp.dest('./www/app/assets'));
 });
 
 gulp.task('watch', function() {
