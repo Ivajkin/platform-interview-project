@@ -1,8 +1,9 @@
 #
 # Rails Constants (primarily asset paths) go here as single .erb file
 #
+angular.module('Constants', [])
 
-angular.module('App').constant 'imagePaths',
+angular.module('Constants').constant 'imagePaths',
 
   general:
     lil:  "lil.gif"
@@ -38,7 +39,7 @@ angular.module('App').constant 'imagePaths',
     userAvatar: "workflow/user_avatar.png"
 
 
-angular.module('App').constant 'templatePaths',
+angular.module('Constants').constant 'templatePaths',
 
   admin:
     main:           "admin/main.html"

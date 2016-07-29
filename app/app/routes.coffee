@@ -1,6 +1,6 @@
-angular.module('App').config [ '$locationProvider', ($locationProvider) -> $locationProvider.html5Mode true ]
+angular.module('Router').config [ '$locationProvider', ($locationProvider) -> $locationProvider.html5Mode true ]
 
-angular.module('App').config [ '$stateProvider', 'templatePaths', ($stateProvider, templatePaths) ->
+angular.module('Router').config [ '$stateProvider', 'templatePaths', ($stateProvider, templatePaths) ->
 
   # TODO roll all states into this abstract parent
   $stateProvider.state 'app',

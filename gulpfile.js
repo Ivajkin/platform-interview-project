@@ -7,7 +7,7 @@ var gulp = require('gulp'),
   concat = require('gulp-concat'),
   browserSync = require('browser-sync').create(),
   url = require('url'),
-  proxy = require('proxy-middleware'),
+  proxy = require('http-proxy-middleware'),
   historyApiFallback = require('connect-history-api-fallback'),
   coffee = require('gulp-coffee'),
   replace = require('gulp-replace'),
@@ -40,9 +40,14 @@ var URLS = {
     api: {
         host: 'http://localhost:3000',
         path: '/app',
-        proxyPath: '/app/api'
+        proxyPath: ['**/*.json']
     }
 }
+var proxyOptions = {
+    target: URLS.api.host, // target host
+    changeOrigin: true,               // needed for virtual hosted sites
+    ws: false,                         // proxy websockets
+};
 
 function fileTypeFilter (files, extension) {
   var regExp = new RegExp('\\.' + extension + '$');
@@ -54,24 +59,13 @@ gulp.task('default', ['build']);
 gulp.task('serve', ['connect', 'build', 'watch']);
 gulp.task('build', [ 'clean-dist', 'index', 'sass', 'vendor-javascript', 'javascript', 'templates', 'fonts', 'images']);
 
-// gulp.task('connect', connect.server({
-//     root: ['www'],
-//     port: 3000,
-//     livereload: true,
-//     open: {
-//         browser: 'Google Chrome' // if not working OS X browser: 'Google Chrome'
-//     }
-// }));
-//
 gulp.task('connect', function() {
-    var proxyOptions = url.parse(URLS.api.host + URLS.api.path);
-    proxyOptions.route = URLS.api.proxyPath;
     browserSync.init({
         ui: false,
         port: 8080,
         server: {
             baseDir: "./www",
-            middleware: [ proxy(proxyOptions), historyApiFallback({ verbose: true }) ]
+            middleware: [ proxy(URLS.api.proxyPath, proxyOptions), historyApiFallback({ verbose: true }) ]
         },
         startPath: 'app/workflow'
     });
@@ -120,10 +114,11 @@ gulp.task('javascript', function(done) {
   return gulp.src([
       'app/app.coffee',
       'app/constants.coffee',
-      'app/router.coffee',
-      'app/controllers.coffee',
+      'app/resources.coffee',
       'app/services.coffee',
       'app/templates.coffee',
+      'app/router.coffee',
+      'app/controllers.coffee',
       'app/**/*.coffee'
     ])
     .pipe(coffee())
