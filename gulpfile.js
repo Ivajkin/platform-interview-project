@@ -10,6 +10,7 @@ var gulp = require('gulp'),
   proxy = require('http-proxy-middleware'),
   historyApiFallback = require('connect-history-api-fallback'),
   coffee = require('gulp-coffee'),
+  babel = require('gulp-babel'),
   replace = require('gulp-replace'),
   sourcemaps = require('gulp-sourcemaps'),
   haml = require('gulp-ruby-haml'),
@@ -18,15 +19,13 @@ var gulp = require('gulp'),
   autoprefixer = require('gulp-autoprefixer'),
   minifyCss = require('gulp-minify-css'),
   rename = require('gulp-rename'),
-  templateCache = require('gulp-angular-templatecache'),
   queue = require('streamqueue'),
   sh = require('shelljs'),
-  Server = require('karma').Server,
   coveralls = require('gulp-coveralls');
 
 var paths = {
   sass: ['app/styles/**/*.scss'],
-  js: ['app/**/*.coffee'],
+  js: ['app/**/*.js'],
   vendor: {
     js: 'vendor/javascript/*.js'
   },
@@ -57,7 +56,7 @@ function fileTypeFilter (files, extension) {
 
 gulp.task('default', ['build']);
 gulp.task('serve', ['connect', 'build', 'watch']);
-gulp.task('build', [ 'clean-dist', 'index', 'sass', 'vendor-javascript', 'javascript', 'templates', 'fonts', 'images']);
+gulp.task('build', [ 'clean-dist', 'index', 'sass', 'vendor-javascript', 'javascript', 'fonts', 'images']);
 
 gulp.task('connect', function() {
     browserSync.init({
@@ -112,16 +111,12 @@ gulp.task('vendor-javascript', function() {
 
 gulp.task('javascript', function(done) {
   return gulp.src([
-      'app/app.coffee',
-      'app/constants.coffee',
-      'app/resources.coffee',
-      'app/services.coffee',
-      'app/templates.coffee',
-      'app/router.coffee',
-      'app/controllers.coffee',
-      'app/**/*.coffee'
+      'app/app.js',
+      'app/**/*.js'
     ])
-    .pipe(coffee())
+    .pipe(babel({
+        presets: ['es2015']
+    }))
     .on('error', function(e) {
       console.log(gutil.colors.red('ERROR'), e);
       // emit here
@@ -132,14 +127,6 @@ gulp.task('javascript', function(done) {
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('www/app/dist'))
     .pipe(browserSync.stream());
-});
-
-gulp.task('templates', function() {
-    gulp.src('./app/templates/**/*.haml', {read: true})
-        .pipe(haml().on('error', function(e) { console.log(e.message); }))
-        .pipe(templateCache())
-        .pipe(gulp.dest('www/app/dist'))
-        .pipe(browserSync.stream());
 });
 
 gulp.task('fonts', function () {
@@ -159,7 +146,6 @@ gulp.task('images', function () {
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
   gulp.watch(paths.js, ['javascript']);
-  gulp.watch(paths.html, ['templates']);
   gulp.watch(paths.index, ['index']);
 });
 
@@ -168,15 +154,6 @@ gulp.task('install', ['git-check'], function() {
     .on('log', function(data) {
       gutil.log('bower', gutil.colors.cyan(data.id), data.message);
     });
-});
-
-gulp.task('test', function (done) {
-  new Server({
-    configFile: __dirname + '/test/karma.conf.js',
-    singleRun: gutil.env.watch ? false : true
-  }, done).start();
-  gulp.src('test/coverage/**/lcov.info')
-  .pipe(coveralls());
 });
 
 gulp.task('git-check', function(done) {
