@@ -10,6 +10,7 @@ An element is an object within the screen.  For this exercise, there will only b
 
 
 ## Task
+
 ```http://live.spongecell.com/interview/ad_revision.json```
 
 Your application must fetch JSON from the above URL and assemble a basic ad as HTML. The dimensions of the ad are specified in the JSON response under 'size'.  Elements must match the size and position in the settings (position is stored as a percentage in the JSON).  Image elements should load their corresponding assets and text should be displayed according to the style specified in the element settings.
