@@ -20,4 +20,4 @@ Your application must fetch JSON from the above URL and assemble a basic ad as H
 
 ## Setup
 - npm install 
-- npm run serve
+- npm run serve (available at http://localhost:3000)
