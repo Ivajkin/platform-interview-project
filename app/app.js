@@ -6,9 +6,9 @@ import $ from 'jquery'; // If you want jQuery.
 import _ from 'lodash'; // If you want underscore/lodash.
 import styles from './styles/app.scss';
 
-function main() {
+function buildAd() {
     console.log('Ready.');
     //JSON: http://live.spongecell.com/interview/ad_revision.json
 }
 
-document.addEventListener('DOMContentLoaded', main);
+document.addEventListener('DOMContentLoaded', buildAd);
