@@ -16,12 +16,8 @@ An element is an object within the screen.  For this exercise, there will only b
 Your application must fetch JSON from the above URL and assemble a basic ad as HTML. The dimensions of the ad are specified in the JSON response under 'size'.  Elements must match the size and position in the settings (position is stored as a percentage in the JSON).  Image elements should load their corresponding assets and text should be displayed according to the style specified in the element settings.
 
 ## Requirements:
-- npm
-- node@6.3.0
-- npm install -g bower
-- npm install -g gulp-cli
+- node^6.3.0 ( install via Homebrew with 'brew install node' or [install manually](https://nodejs.org/en/))
 
 ## Setup
-- npm i
-- bower i
-- gulp serve
+- npm install / yarn install
+- npm run serve
