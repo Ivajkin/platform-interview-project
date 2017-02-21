@@ -19,5 +19,5 @@ Your application must fetch JSON from the above URL and assemble a basic ad as H
 - node^6.3.0 ( can be installed via Homebrew with 'brew install node' or [install manually](https://nodejs.org/en/))
 
 ## Setup
-- npm install / yarn install
+- npm install 
 - npm run serve
