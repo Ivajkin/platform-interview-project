@@ -9,6 +9,8 @@ pids
 *.pid
 *.seed
 
+.DS_STORE
+
 
 # node-waf configuration
 .lock-wscript
