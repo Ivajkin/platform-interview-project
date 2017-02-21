@@ -9,7 +9,7 @@ pids
 *.pid
 *.seed
 
-.DS_STORE*
+**.DS_STORE
 
 
 # node-waf configuration
