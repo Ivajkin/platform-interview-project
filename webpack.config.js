@@ -1,12 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-// var ExtractTextPlugin = require("extract-text-webpack-plugin");
-
-// var extractSass = new ExtractTextPlugin({
-//     filename: "styles.css",
-//     allChunks: true,
-//     disable: false
-// });
 
 module.exports = {
   devtool: 'source-map',
