@@ -15,7 +15,7 @@ module.exports = {
     rules: [
       // js
       {
-        test: /\.(js|jsx)$/,
+        test: /\.js$/,
         loader: 'babel-loader',
         include: path.join(__dirname, 'app'),
         query: {
