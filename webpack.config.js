@@ -38,4 +38,12 @@ module.exports = {
     modules: ['node_modules'],
     extensions: ['.js','.scss'],
   },
+
+  plugins: [
+    new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
+        "window.jQuery": "jquery"
+    })
+]
 };
