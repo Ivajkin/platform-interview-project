@@ -6,8 +6,14 @@ import $ from 'jquery'; // If you want jQuery.
 import _ from 'lodash'; // If you want underscore/lodash.
 import styles from './styles/app.scss';
 
+import Ad from './ad';
+
+
 function buildAd() {
-    //JSON: http://live.spongecell.com/interview/ad_revision.json
+    fetch('/assets/ad.json').then( res => res.json()).then( adJSON => {
+        const ad = new Ad(adJSON);
+        document.body.appendChild(ad.render());
+    })
 }
 
 document.addEventListener('DOMContentLoaded', buildAd);

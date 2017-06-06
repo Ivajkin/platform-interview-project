@@ -19,7 +19,8 @@ module.exports = {
         loader: 'babel-loader',
         include: path.join(__dirname, 'app'),
         query: {
-          presets: ['es2015']
+          presets: ['es2015'],
+          plugins: ['transform-object-rest-spread']
         }
       },
       // CSS
