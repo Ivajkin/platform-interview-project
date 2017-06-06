@@ -8,13 +8,8 @@ class Ad {
     render() {
         const screenNodes = this.getScreens();
         let adContainerNode = document.createElement('div');
-        adContainerNode = this.appendScreens(adContainerNode, screenNodes);
+        adContainerNode = appendChildren(adContainerNode, screenNodes);
         adContainerNode = applyStyles(adContainerNode, this.json.style);
-        return adContainerNode;
-    }
-
-    appendScreens(adContainerNode, screenNodes) {
-        screenNodes.forEach( s => adContainerNode.appendChild(s));
         return adContainerNode;
     }
 
@@ -24,6 +19,11 @@ class Ad {
         const screenNodes = screens.map( screenJson => new Screen(screenJson, assets).render());
         return screenNodes;
     }
+}
+
+export function appendChildren(parent, nodes) {
+    nodes.forEach( s => parent.appendChild(s));
+    return parent;
 }
 
 export function applyStyles(node, styles) {
