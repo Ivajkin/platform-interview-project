@@ -1,0 +1,114 @@
+{
+  "id": 111,
+  "assets": {
+    "1": "/assets/images/bg.png",
+    "2": "/assets/images/button.png",
+    "3": "/assets/images/logo.png"
+  },
+  "settings": {
+    "background": null,
+    "elements": null,
+    "screens": [{
+      "elements": [
+        {
+          "action": {
+            "interaction": "click"
+          },
+          "iid": "2babe05s",
+          "image": {
+            "masterAssetId": 2
+          },
+          "name": "Button",
+          "position": {
+            "right": 0.05,
+            "bottom": 0.05
+          },
+          "type": "image"
+        },
+        {
+          "action": {
+            "interaction": "click"
+          },
+          "iid": "to85tq0n",
+          "image": {
+            "masterAssetId": 3
+          },
+          "name": "Logo",
+          "position": {
+            "left": 0.08,
+            "top": 0.1
+          },
+          "type": "image"
+        },
+        {
+          "iid": "gqlkzmlq",
+          "label": "Text",
+          "name": "Text",
+          "position": {
+            "left": 0.08,
+            "top": 0.3
+          },
+          "text": {
+            "style": {
+              "color": "#FFFFFF",
+              "font-family": "Helvetica",
+              "font-size": "14",
+              "font-weight": "bold"
+            },
+            "content": "[sponge-cell] | noun"
+          },
+          "type": "text"
+        },
+        {
+          "iid": "gqlkzmlq",
+          "label": "Text",
+          "name": "Text",
+          "position": {
+            "left": 0.08,
+            "top": 0.4
+          },
+          "text": {
+            "style": {
+              "color": "#FFFFFF",
+              "font-family": "Helvetica",
+              "font-size": "12",
+            },
+            "content": "1. a creative technology company focused on making data-driven creative simple, effective and scalable."
+          },
+          "type": "text"
+        },
+        {
+          "iid": "gqlkzmlq",
+          "label": "Text",
+          "name": "Text",
+          "position": {
+            "left": 0.08,
+            "top": 0.6
+          },
+          "text": {
+            "style": {
+              "color": "#FFFFFF",
+              "font-family": "Helvetica",
+              "font-size": "12",
+              "font-style": "italic"
+            },
+            "content": "Example: Spongecell's smart programmatic creative is the future."
+          },
+          "type": "text"
+        }
+      ],
+      "iid": "home",
+      "name": "home",
+      "background": {
+        "image": {
+          "masterAssetId": 1
+        }
+      }
+    }]
+  },
+  "size": {
+    "height": 250,
+    "width": 300
+  },
+  "updatedAt": "2016-10-04T14:24:15.000-07:00"
+}
